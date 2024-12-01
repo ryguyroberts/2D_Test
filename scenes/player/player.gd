@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 const speed = 500
 
-func _process(delta):
+func _process(_delta):
 	
 	#input
 	var direction = Input.get_vector("left", "right", "up", "down")
+	
 	#movement
 	velocity = direction * speed
 	move_and_slide()
