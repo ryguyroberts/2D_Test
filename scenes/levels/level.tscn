@@ -2,17 +2,31 @@
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vmwff"]
 [ext_resource type="PackedScene" uid="uid://dm77qtwcdd148" path="res://scenes/player/player.tscn" id="2_pkf6x"]
-[ext_resource type="PackedScene" uid="uid://cnto7k5yguoxp" path="res://scenes/objects/bed.tscn" id="3_rkhqe"]
-[ext_resource type="PackedScene" uid="uid://0xmph65o7yum" path="res://scenes/enemies/drone.tscn" id="4_ry0sh"]
+[ext_resource type="Texture2D" uid="uid://dng8poga6rcv6" path="res://resources/graphics/objects/gate.png" id="3_ft6aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x2jj"]
+size = Vector2(818, 205)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vmwff")
 
+[node name="Gate" type="StaticBody2D" parent="."]
+
+[node name="Gate" type="Sprite2D" parent="Gate"]
+position = Vector2(528, -503)
+texture = ExtResource("3_ft6aa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(-908, -1287, -909, -953, -911, -164, -904, 64, -894, 113, -850, 185, -816, 207, -769, 243, -685, 273, -546, 271, -327, 276, -23, 273, 161, 276, 162, 197, 162, 152, 153, 27, 1009, 28, 1016, 118, 1020, 182, 1020, 251, 1018, 275, 1874, 270, 2004, 209, 2058, 125, 2088, 4, 2085, -144, 2086, -502, 2086, -772, 2090, -970, 2090, -1131, 2083, -1290)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(583, 162.5)
+shape = SubResource("RectangleShape2D_3x2jj")
+
 [node name="Player" parent="." instance=ExtResource("2_pkf6x")]
-position = Vector2(825, 429)
+position = Vector2(864, 567)
 
-[node name="Bed" parent="." instance=ExtResource("3_rkhqe")]
-position = Vector2(599, 18)
-
-[node name="Drone" parent="." instance=ExtResource("4_ry0sh")]
-position = Vector2(141, 343)
+[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Gate/Area2D" to="." method="_on_area_2d_body_exited"]

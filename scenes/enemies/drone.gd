@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 100.0
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	var direction: Vector2 = Vector2.RIGHT
 	
-	velocity = Vector2(1,0) * SPEED
+	velocity = direction * SPEED
 	
 	move_and_slide()
