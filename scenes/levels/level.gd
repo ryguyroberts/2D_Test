@@ -13,9 +13,10 @@ func _on_player_laser(pos) -> void:
 	laser.position = pos
 	$Projectiles.add_child(laser)
 
-func _on_player_grenade(pos) -> void:
-	var grenade = grenade_scene.instantiate()
+func _on_player_grenade(pos, direction) -> void:
+	var grenade = grenade_scene.instantiate() as RigidBody2D
 	grenade.position = pos
+	grenade.linear_velocity = direction * 100
 	$Projectiles.add_child(grenade)
 	
 	print("grenade from level")

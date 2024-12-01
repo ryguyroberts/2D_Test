@@ -4,7 +4,7 @@ var can_laser: bool = true
 var can_grenade: bool = true
 
 signal laser(pos)
-signal grenade(pos)
+signal grenade(pos, direction)
 
 const speed = 400
 
@@ -12,6 +12,9 @@ func _process(_delta):
 	
 	#input
 	var direction = Input.get_vector("left", "right", "up", "down")
+	
+	#rotate
+	look_at(get_global_mouse_position())
 	
 	# Gun nozzle positions
 	var laser_markers: Array = $LaserStartPositions.get_children()
@@ -31,7 +34,8 @@ func _process(_delta):
 	if Input.is_action_pressed("secondary action") and can_grenade:
 		can_grenade = false
 		$TimerGrenade.start()
-		grenade.emit(seleced_laser.global_position)
+		var player_direction = (get_global_mouse_position() - position).normalized()
+		grenade.emit(seleced_laser.global_position, player_direction)
 
 
 # Action Cooldowns
