@@ -10,10 +10,10 @@ script = ExtResource("1_vmwff")
 [node name="Gate" parent="." instance=ExtResource("3_3fptk")]
 position = Vector2(527, -458)
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("2_pkf6x")]
 position = Vector2(864, 567)
-
-[node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
