@@ -30,6 +30,7 @@ func _process(_delta):
 	
 	#laser shooting input
 	if Input.is_action_pressed("primary action") and can_laser:
+		$GPUParticles2D.emitting = true
 		can_laser = false
 		$TimerLaser.start()
 		laser.emit(seleced_laser.global_position, player_direction)
