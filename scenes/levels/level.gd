@@ -3,10 +3,6 @@ extends Node2D
 var laser_scene = preload("res://scenes/projectiles/laser.tscn")
 var grenade_scene = preload("res://scenes/projectiles/grenade.tscn")
 
-func _on_gate_player_entered_gate(body) -> void:
-	print("player has entered gate")
-	print(body)
-
 
 func _on_player_laser(pos, direction) -> void:
 	var laser = laser_scene.instantiate() as Area2D
@@ -21,4 +17,7 @@ func _on_player_grenade(pos, direction) -> void:
 	grenade.linear_velocity = direction * grenade.speed
 	$Projectiles.add_child(grenade)
 	
-	print("grenade from level")
+
+func _on_gate_player_entered_gate(body: Variant) -> void:
+	print("entered gate at level")
+	print(body)
