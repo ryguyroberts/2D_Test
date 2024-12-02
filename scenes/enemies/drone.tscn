@@ -7,6 +7,8 @@
 radius = 71.7008
 
 [node name="Drone" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_l8uuw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
