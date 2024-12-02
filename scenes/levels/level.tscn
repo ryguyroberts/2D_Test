@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://08sxeyfw4wgh"]
+[gd_scene load_steps=16 format=4 uid="uid://08sxeyfw4wgh"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vmwff"]
 [ext_resource type="PackedScene" uid="uid://dm77qtwcdd148" path="res://scenes/player/player.tscn" id="2_pkf6x"]
@@ -10,6 +10,24 @@
 [ext_resource type="Texture2D" uid="uid://cggcrx6si4qtr" path="res://resources/graphics/decals/moss/moss_3.png" id="6_cxwxe"]
 [ext_resource type="Texture2D" uid="uid://dn5gjvkstfuj2" path="res://resources/graphics/decals/moss/moss_4.png" id="7_0x7qm"]
 [ext_resource type="Texture2D" uid="uid://b73frokde35d7" path="res://resources/graphics/tilesets/outside_walls.png" id="8_vu2ak"]
+[ext_resource type="Texture2D" uid="uid://bmlps37ekroxp" path="res://resources/graphics/tilesets/soil.png" id="9_kqces"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxj28"]
+texture = ExtResource("9_kqces")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_x6dxa"]
+tile_size = Vector2i(390, 390)
+sources/0 = SubResource("TileSetAtlasSource_lxj28")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hprvx"]
 texture = ExtResource("8_vu2ak")
@@ -62,12 +80,19 @@ texture = ExtResource("6_cxwxe")
 position = Vector2(2371, 542)
 texture = ExtResource("7_0x7qm")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Ground"]
+[node name="Ground" type="TileMapLayer" parent="Ground"]
+self_modulate = Color(0.2, 0.117647, 0.188235, 0.733333)
+tile_map_data = PackedByteArray("AAD6////AAAAAAAAAAD7////AAABAAAAAAD8////AAACAAAAAAD6/wAAAAAAAAEAAAD7/wAAAAABAAEAAAD8/wAAAAACAAEAAAD6/wEAAAAAAAIAAAD7/wEAAAABAAIAAAD8/wEAAAACAAIAAAA=")
+tile_set = SubResource("TileSet_x6dxa")
+
+[node name="Walls" type="TileMapLayer" parent="Ground"]
 tile_map_data = PackedByteArray("AAAGAP3/AAAAAAEAAAAGAP7/AAAAAAIAAAAGAP//AAAAAAIAAAAGAAAAAAABAAIAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAKAAAAAAABAAAAAAAJAAAAAAABAAAAAAD8//3/AAAAAAEAAAD8//7/AAAAAAIAAAD8////AAAAAAIAAAD8/wAAAAACAAIAAAD7/wAAAAABAAAAAAD6/wAAAAABAAAAAAD5/wAAAAABAAAAAAD4/wAAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_6shvo")
 
 [node name="Gate" parent="." instance=ExtResource("3_3fptk")]
 position = Vector2(527, -458)
+
+[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_pkf6x")]
 position = Vector2(864, 567)
@@ -75,8 +100,6 @@ position = Vector2(864, 567)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
-
-[node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
