@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm77qtwcdd148"]
+[gd_scene load_steps=7 format=3 uid="uid://dm77qtwcdd148"]
 
 [ext_resource type="Texture2D" uid="uid://by7lh5dvvsjld" path="res://resources/graphics/player/player.png" id="1_gtm0s"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_k5h60"]
@@ -16,6 +16,9 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.3
 scale_max = 0.8
 color = Color(1.82897e-06, 0.615746, 0.771629, 0.807843)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uoc4i"]
+polygon = PackedVector2Array(27, -58, 38, -46, 47, -38, 48, -33, 52, -27, 63, -24, 80, -7, 89, -9, 100, -2, 113, 0, 115, 5, 127, 5, 127, 10, 134, 10, 137, 17, 136, 28, 132, 35, 125, 34, 125, 39, 114, 39, 111, 37, 105, 46, 99, 47, 98, 55, 66, 55, 63, 52, 62, 46, 65, 44, 45, 43, 27, 50, 13, 58, -2, 62, -17, 62, -30, 57, -35, 46, -41, 35, -48, 23, -47, 17, -56, 9, -55, -6, -55, -17, -49, -28, -46, -38, -36, -44, -28, -45, -20, -51, -12, -54, -1, -55, 10, -57)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-2, 0)
@@ -56,6 +59,9 @@ process_material = SubResource("ParticleProcessMaterial_5dsgc")
 texture = ExtResource("3_ipcls")
 lifetime = 0.2
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_uoc4i")
 
 [connection signal="timeout" from="TimerLaser" to="." method="_on_timer_laser_timeout"]
 [connection signal="timeout" from="TimerGrenade" to="." method="_on_timer_grenade_timeout"]
