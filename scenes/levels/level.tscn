@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://08sxeyfw4wgh"]
+[gd_scene load_steps=17 format=4 uid="uid://08sxeyfw4wgh"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vmwff"]
 [ext_resource type="PackedScene" uid="uid://dm77qtwcdd148" path="res://scenes/player/player.tscn" id="2_pkf6x"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dn5gjvkstfuj2" path="res://resources/graphics/decals/moss/moss_4.png" id="7_0x7qm"]
 [ext_resource type="Texture2D" uid="uid://b73frokde35d7" path="res://resources/graphics/tilesets/outside_walls.png" id="8_vu2ak"]
 [ext_resource type="Texture2D" uid="uid://bmlps37ekroxp" path="res://resources/graphics/tilesets/soil.png" id="9_kqces"]
+[ext_resource type="PackedScene" uid="uid://b6crukyjd8cc1" path="res://scenes/house/house.tscn" id="12_00qaf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxj28"]
 texture = ExtResource("9_kqces")
@@ -57,7 +58,7 @@ texture_repeat = 3
 position = Vector2(603, 769)
 texture = ExtResource("2_ywb7t")
 region_enabled = true
-region_rect = Rect2(-3.49756, 2.89838, 7174.69, 3745.92)
+region_rect = Rect2(-3.49756, 2.89838, 17042.7, 11513.6)
 
 [node name="Decoration" type="Sprite2D" parent="Ground"]
 modulate = Color(0.184314, 0.243137, 0.211765, 0.54902)
@@ -91,6 +92,10 @@ tile_set = SubResource("TileSet_6shvo")
 
 [node name="Gate" parent="." instance=ExtResource("3_3fptk")]
 position = Vector2(527, -458)
+
+[node name="House" parent="." instance=ExtResource("12_00qaf")]
+position = Vector2(-2340, 3654)
+rotation = -2.31082
 
 [node name="Projectiles" type="Node2D" parent="."]
 
