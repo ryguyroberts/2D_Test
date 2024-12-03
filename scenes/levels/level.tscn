@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://08sxeyfw4wgh"]
+[gd_scene load_steps=20 format=4 uid="uid://08sxeyfw4wgh"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vmwff"]
 [ext_resource type="PackedScene" uid="uid://dm77qtwcdd148" path="res://scenes/player/player.tscn" id="2_pkf6x"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cbhtcuq6fjrxb" path="res://scenes/objects/light_fan_animation.tscn" id="11_std3c"]
 [ext_resource type="PackedScene" uid="uid://b6crukyjd8cc1" path="res://scenes/house/house.tscn" id="12_00qaf"]
 [ext_resource type="PackedScene" uid="uid://dk7h5ftl24xpm" path="res://scenes/objects/vent_hole.tscn" id="13_8jaya"]
+[ext_resource type="PackedScene" uid="uid://0xmph65o7yum" path="res://scenes/enemies/drone.tscn" id="15_stbry"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxj28"]
 texture = ExtResource("9_kqces")
@@ -115,6 +116,9 @@ position_smoothing_enabled = true
 
 [node name="VentHole" parent="." instance=ExtResource("13_8jaya")]
 position = Vector2(-609, 1073)
+
+[node name="Drone" parent="." instance=ExtResource("15_stbry")]
+position = Vector2(102, 935)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
