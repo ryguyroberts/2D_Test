@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name LevelParent
+
 var laser_scene = preload("res://scenes/projectiles/laser.tscn")
 var grenade_scene = preload("res://scenes/projectiles/grenade.tscn")
 
@@ -17,11 +19,6 @@ func _on_player_grenade(pos, direction) -> void:
 	grenade.linear_velocity = direction * grenade.speed
 	$Projectiles.add_child(grenade)
 	
-
-func _on_gate_player_entered_gate(_body: Variant) -> void:
-	var tween = create_tween()
-	tween.tween_property($Player,"speed", 0, 0.5)
-
 
 func _on_house_player_entered() -> void:
 	var tween = get_tree().create_tween()

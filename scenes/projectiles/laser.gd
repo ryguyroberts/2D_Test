@@ -6,6 +6,8 @@ var direction: Vector2 = Vector2.UP
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 
+func _ready() -> void:
+	$Timer.start()
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var direction: Vector2 = Vector2.RIGHT
 	
 	velocity = direction * SPEED
