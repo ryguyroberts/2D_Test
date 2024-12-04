@@ -31,14 +31,16 @@ func _process(_delta):
 	move_and_slide()
 	
 	#laser shooting input
-	if Input.is_action_pressed("primary action") and can_laser:
+	if Input.is_action_pressed("primary action") and can_laser and Globals.laser_amount > 0:
+		Globals.laser_amount -= 1
 		$GPUParticles2D.emitting = true
 		can_laser = false
 		$TimerLaser.start()
 		laser.emit(seleced_laser.global_position, player_direction)
 		
 	# grenade input
-	if Input.is_action_pressed("secondary action") and can_grenade:
+	if Input.is_action_pressed("secondary action") and can_grenade and Globals.grenade_amount > 0:
+		Globals.grenade_amount -= 1
 		can_grenade = false
 		$TimerGrenade.start()
 		grenade.emit(seleced_laser.global_position, player_direction)
