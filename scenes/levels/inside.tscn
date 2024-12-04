@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=4 uid="uid://cv2qqykfjgx8h"]
+[gd_scene load_steps=9 format=4 uid="uid://cv2qqykfjgx8h"]
 
 [ext_resource type="PackedScene" uid="uid://08sxeyfw4wgh" path="res://scenes/levels/level.tscn" id="1_24c6o"]
 [ext_resource type="TileSet" uid="uid://3530havv8t07" path="res://scenes/tilelayers/floor.tres" id="2_3xuy1"]
+[ext_resource type="Script" path="res://scenes/levels/inside.gd" id="2_co0qy"]
 [ext_resource type="TileSet" uid="uid://cbcv0fnc8hf7w" path="res://scenes/tilelayers/outer_walls.tres" id="3_86hiy"]
 [ext_resource type="TileSet" uid="uid://6bmedhpxpdbo" path="res://scenes/tilelayers/inner_walls.tres" id="4_mkoxl"]
 [ext_resource type="PackedScene" uid="uid://kcgjc4au1m6j" path="res://scenes/objects/wall_lamp.tscn" id="5_nevwd"]
 [ext_resource type="PackedScene" uid="uid://cr10mufo0wpuj" path="res://scenes/objects/simple_light.tscn" id="6_xtnnm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpth4"]
+size = Vector2(736, 161)
+
 [node name="Inside" instance=ExtResource("1_24c6o")]
+script = ExtResource("2_co0qy")
 
 [node name="TileLayers" type="Node2D" parent="Ground" index="0"]
 
@@ -54,3 +59,11 @@ rotation = 1.56556
 
 [node name="Player" parent="." index="2"]
 position = Vector2(-1, 1877)
+
+[node name="ExitGateArea" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGateArea" index="0"]
+position = Vector2(1, 2122.5)
+shape = SubResource("RectangleShape2D_gpth4")
+
+[connection signal="body_entered" from="ExitGateArea" to="." method="_on_exit_gate_area_body_entered"]
